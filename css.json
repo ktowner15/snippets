@@ -13,22 +13,31 @@
 	// 	"description": "Log output to console"
 	// }
 
-"makeDefaultCSS": {
-	"prefix": "makeCSSDefault",
-	"body": "* {
-		box-sizing: border-box;
-		margin: 0;
-		padding: 0;
-	  }
-	  
-	  body{
-		font-family: Arial, Helvetica, sans-serif;
-		line-height: 1.4;
-	  }
-	  
-	  a{
-		color: #333;
-		text-decoration: none;
-	  }",
-	  "description": default React src/App.css snippet
+	"makeDefaultCSS": {
+		"prefix": "makeCSSDefault",
+		"body": ["* {",
+			"\tbox-sizing: border-box;",
+			"\tmargin: 0;",
+			"\tpadding: 0;",
+			"}",
+			"body{",
+			"\tfont-family: Arial, Helvetica, sans-serif;",
+			"\tline-height: 1.4;",
+			"}",
+			"a{",
+			"\tcolor: #333;",
+			"\ttext-decoration: none;",
+			"}"]
+	},
+	"parallaxEffect": {
+		"prefix": "parallaxEffect",
+		"body": [
+		"\tbackground-image: url(${0:IMAGE-URL});",
+		"\tbackground-attachment: fixed;",
+		"\tbackground-position: center;",
+		"\tbackground-repeat: no-repeat;",
+		"\tbackground-size: cover;"
+		],
+		"description": "pastes CSS needed for image parallax effect."
+	}
 }
