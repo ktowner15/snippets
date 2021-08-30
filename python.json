@@ -32,5 +32,15 @@
 			"#end ${1:function_name}"
 		],
 		"description": "A function"
+	},
+	"fileIO_snippet":{
+		"prefix": "fileIO_snippet",
+		"body": [
+			"import os",
+			"if(os.path.exists(${1:file_path})):",
+			"\twith open(${1:file_path}, ${2:mode}) as fp:",
+			"\t\tcontents = fp.read()",
+			"\t\tprint(contents)"
+		]
 	}
 }
