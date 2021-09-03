@@ -34,7 +34,7 @@
 		"description": "A function"
 	},
 	"fileIO_snippet":{
-		"prefix": "fileIO_snippet",
+		"prefix": ["fileio", "io", "iosnippet", "filesnippet"],
 		"body": [
 			"import os",
 			"if(os.path.exists(${1:file_path})):",
