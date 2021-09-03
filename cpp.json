@@ -15,7 +15,7 @@
 
 	//main function:
 	"main()": {
-		"prefix": "mainfunction",
+		"prefix": "main_function",
 		"body": [
 			"//File: main.cpp",
 			"",
@@ -89,6 +89,23 @@
 			"\tos << o.toString();",
 			"\treturn os;",
 			"}// end <<()"
+		],
+		"description": "The implementation file"
+	},
+
+	"Hello World": {
+		"prefix": "helloworld",
+		"body": [
+			"// File: ${1:filename}.cpp",
+			"",
+			"#include <iostream>",
+			"",
+			"using namespace std;",
+			"",
+			"int main(){",
+			"\tcout << /*input message to say here*/ << endl;",
+			"return 0",
+			"}",
 		],
 		"description": "The implementation file"
 	}
