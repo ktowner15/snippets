@@ -14,18 +14,20 @@
 	// }
 	//main function:
 	"main()": {
-		"prefix": "main",
+		"prefix": ["main", "main_snippet"],
 		"body": [
-			"#File: main.py",
-			"",
-			"if __name__ == \"__main__\":",
+			"#Main execution function",
+			"def main():",
 			"\tprint(\"${1:Hello world?}\")",
-			"#end main"
+			"",
+			"#Main execution thread",
+			"if __name__ == \"__main__\":",
+			"\tmain()"
 		],
 		"description": "The main() function"
 	},
 	"function()":{
-		"prefix": "function",
+		"prefix": ["function", "function_snippet"],
 		"body": [
 			"def ${1:function_name}(${2:params}):",
 			"\t${3}",
@@ -34,7 +36,7 @@
 		"description": "A function"
 	},
 	"fileIO_snippet":{
-		"prefix": ["fileio", "io", "iosnippet", "filesnippet"],
+		"prefix": ["file_io", "io", "io_snippet", "file_snippet"],
 		"body": [
 			"import os",
 			"if(os.path.exists(${1:file_path})):",
