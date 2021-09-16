@@ -44,5 +44,17 @@
 			"\t\tcontents = fp.read()",
 			"\t\tprint(contents)"
 		]
+	},
+	"dirWalk":{
+		"prefix": ["dirWalk, directoryWalk"],
+		"body": [
+			"import os",
+			"for root, dir, files in os.walk(${1:dirToWalk}):",
+			"\tprint root",
+			"\tfor items in files:",
+			"\t\tprint \"...\" + items",
+			"\tprint \"\""
+		],
+		"description": "Walks directory tree, treating dirToWalk as top of tree."
 	}
 }
