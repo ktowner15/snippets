@@ -56,5 +56,19 @@
 			"\tprint \"\""
 		],
 		"description": "Walks directory tree, treating dirToWalk as top of tree."
+	},
+	"dataClass":{
+		"prefix": ["dataClass"],
+		"body": [
+			"import dataclasses",
+			"#from dataclasses import dataclass, field # Alternate import method",
+			"@dataclass(frozen=True, order=True)",
+			"class ${1:class_name}:",
+			"\t${2:field_name}: ${3:field_value} = ${4:opt_default_value}",
+			"\t${5:next_field_name}: ${6:next_field_value} = ${7:next_opt_default_value}",
+			"#replies: list[int] = [] # Don't make a field within an immutable class something mutable, like a list. If you do this, every instance of this class will share the same memory for that argument.",
+			"#replies: list[int] = field(default_factory=list)# To avoid the above, use the default_factory argument.  This will instantiate separate memory blocks for each instance of this class."
+		],
+		"description": "Simple dataclass. Declaration as a dataclass automatically writes the __eq__, __init__, and __repr__ functions.  The 'frozen=True' param writes a __hash__ function, and means the class is immutable (read-only after declaration) and can be used, for example, as a dictionary key.  The 'order=True' param writes all of the inequality operator functions (__eq__, __ge__, __gt__, __le__, and __lt__).  Either/both parameters can be safely removed if you don't want their respective functions.\nSee https://youtu.be/vBH6GRJ1REM for more details on proper usage."
 	}
 }
