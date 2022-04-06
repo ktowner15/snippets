@@ -33,5 +33,22 @@
 			"1 | 2 | 3"
 		],
 		"description": "sample table"
+	},
+	"Page Break": {
+		"prefix": "page_break",
+		"body": [
+			"<div style=\"page-break-after: always;\"></div>"
+		],
+		"description": "page break"
+	},
+	"Readme": {
+		"prefix": "readme",
+		"body": [
+			"# ${1:Title}",
+			"",
+			"## Purpose",
+			"${2:purpose_of_doc}"
+		],
+		"description": "README format snippet"
 	}
 }
