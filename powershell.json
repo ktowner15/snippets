@@ -1,0 +1,100 @@
+{
+	// Place your snippets for powershell here. Each snippet is defined under a snippet name and has a prefix, body and 
+	// description. The prefix is what is used to trigger the snippet and the body will be expanded and inserted. Possible variables are:
+	// $1, $2 for tab stops, $0 for the final cursor position, and ${1:label}, ${2:another} for placeholders. Placeholders with the 
+	// same ids are connected.
+	// Example:
+	// "Print to console": {
+	// 	"prefix": "log",
+	// 	"body": [
+	// 		"console.log('$1');",
+	// 		"$2"
+	// 	],
+	// 	"description": "Log output to console"
+	// }
+	"basic_script": {
+		"prefix": "!",
+		"body": [
+			"# Generic script definition",
+			"",
+			"function ${1:Function_name}() {",
+    		"\tparam (",
+        	"\t\t[string]\\$${2:param1},",
+        	"\t\t[string[]]\\$${3:param2}",
+    		"\t)",
+    		"\tWrite-Host (\"-------[BEGIN]-------\")",
+    		"\treturn \\$${2:param1}",
+    		"\tWrite-Host (\"-------[END]-------\")",
+			"\t}",
+			"#Script body",
+			"try{",
+    		"\tWrite-Host (${1:Function_name}(\"thing_to_write\"))",
+			"}",
+			"catch{",
+    		"\tWrite-Host \"Error: '\\$error'\"",
+			"}"
+		],
+		"description": "Generic script definition"
+	},
+	"Filter child-items": {
+		"prefix": "filter-children",
+		"body": [
+			"\\$${1:foo} = Get-ChildItem \\$${2:dir} | Where-Object {\\$_.PSIsContainer -eq \\$false} | Select-Object FullName"
+		],
+		"description": "filter child items, returning full path"
+	},
+	"Function": {
+		"prefix": "function",
+		"body": [
+			"function ${1:Verb}-${2:Noun} {",
+			"",
+			"\tparam (",
+			"\t\t[${3:param_type}] \\$${4:param_name},", 
+			"\t\t[${5:param_type}] \\$${6:param_name},",
+			"\t)"
+		],
+		"description": "Basic function body"
+	},
+	"PostOrderTree": {
+		"prefix": "postorder tree",
+		"body": [
+			"function Get-PostOrderHelper {",
+			"\tparam (",
+			"\t\t[String] $Node,",
+			"\t\t[System.Collections.Generic.List[string]] $Answer",
+			"\t)",
+			"\t",
+			"\tif(($null -eq $Node)){",
+			"\t\tWrite-Host \"NULL VALUE\"",
+			"\t\treturn 0",
+			"\t}",
+			"\t",
+			"\t# Visit nodes in postorder",
+			"\t$node_children = Get-ChildItem $Node -Directory",
+			"\tforeach($child in $node_children){",
+			"\t\tGet-PostOrderHelper -Node $child.FullName -Answer $answer",
+			"\t}",
+			"\t",
+			"\t$Answer.Add($Node)",
+			"\t",
+			"}",
+			"",
+			"function Get-PostOrder {",
+			"\t# Usage: Get-PostOrder -Root \"./tree_root\"",
+			"\tparam(",
+			"\t\t[string]$Root",
+			"\t)",
+			"\t",
+			"\t$answer = New-Object System.Collections.Generic.List[string]",
+			"\t# $answer.Add(\"Tail\")",
+			"\t",
+			"\tGet-PostOrderHelper -Node $Root -Answer $answer",
+			"\t",
+			"\treturn $answer",
+			"}",
+		],
+		"description": "Basic functions for postorder tree traversal of filesystem"
+	}
+
+	
+}
