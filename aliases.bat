@@ -7,6 +7,7 @@
 @REM    pyVirt-r (environment to be removed) === removes specified virtual environment
 @REM    pyVirt (environment name) === activate specified environment
 @REM    All instances can be exited with 'deactivate'.
+@REM SEE https://www.geeksforgeeks.org/batch-script-aliases/ for more information on how to set up autorun.
 
 doskey pyVirt-n=python -m venv C:\Applications\Python_virtual_envs\$*
 doskey pyVirt-l=dir C:\Applications\Python_virtual_envs
