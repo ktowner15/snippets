@@ -18,20 +18,20 @@
 			"# Generic script definition",
 			"",
 			"function ${1:Function_name}() {",
-    		"\tparam (",
-        	"\t\t[string]\\$${2:param1},",
-        	"\t\t[string[]]\\$${3:param2}",
-    		"\t)",
-    		"\tWrite-Host (\"-------[BEGIN]-------\")",
-    		"\treturn \\$${2:param1}",
-    		"\tWrite-Host (\"-------[END]-------\")",
+			"\tparam (",
+			"\t\t[string]\\$${2:param1},",
+			"\t\t[string[]]\\$${3:param2}",
+			"\t)",
+			"\tWrite-Host (\"-------[BEGIN]-------\")",
+			"\treturn \\$${2:param1}",
+			"\tWrite-Host (\"-------[END]-------\")",
 			"\t}",
 			"#Script body",
 			"try{",
-    		"\tWrite-Host (${1:Function_name}(\"thing_to_write\"))",
+			"\tWrite-Host (${1:Function_name}(\"thing_to_write\"))",
 			"}",
 			"catch{",
-    		"\tWrite-Host \"Error: '\\$error'\"",
+			"\tWrite-Host \"Error: '\\$error'\"",
 			"}"
 		],
 		"description": "Generic script definition"
@@ -49,7 +49,7 @@
 			"function ${1:Verb}-${2:Noun} {",
 			"",
 			"\tparam (",
-			"\t\t[${3:param_type}] \\$${4:param_name},", 
+			"\t\t[${3:param_type}] \\$${4:param_name},",
 			"\t\t[${5:param_type}] \\$${6:param_name},",
 			"\t)"
 		],
@@ -74,7 +74,7 @@
 			"\tforeach($child in $node_children){",
 			"\t\tGet-PostOrderHelper -Node $child.FullName -Answer $answer",
 			"\t}",
-			"\t",
+			"\t#Visit($Node)",
 			"\t$Answer.Add($Node)",
 			"\t",
 			"}",
@@ -94,7 +94,60 @@
 			"}",
 		],
 		"description": "Basic functions for postorder tree traversal of filesystem"
+	},
+	"Create-Region": {
+		"prefix": "region",
+		"body": [
+			"#region begin ${1:region_name}",
+			"${2:region_body}",
+			"#endregion"
+		],
+		"description": "filter child items, returning full path"
+	},
+	"Create-Shortcut": {
+		"prefix": "make-shortcut",
+		"body": [
+			"# Usage: set-shortcut PlacementLocation\\ShortcutName.lnk PathToExecutable\\app.exe",
+			"function Set-Shortcut {",
+			"\tparam (",
+			"\t\t[string]$$PlacementLocation,",
+			"\t\t[string]$$DestinationPath",
+			"\t)",
+			"\t$$WshShell = New-Object -comObject WScript.Shell",
+			"\t$$Shortcut = $$WshShell.CreateShortcut($$PlacementLocation)",
+			"\t$$Shortcut.TargetPath = $$DestinationPath",
+			"\t$$Shortcut.Save()",
+			"}"
+		],
+		"description": "definition for shortcut-creation function"
+	},
+	"Array-Union": {
+		"prefix": ["union", "set-union"],
+		"body": [
+			"$$a = (1,2,3,4)",
+			"$$b = (1,3,4,5)",
+			"$$union = Compare-Object $$a $$b -PassThru -IncludeEqual # set-union operation between $a and $b.  See https://stackoverflow.com/questions/8609204/union-and-intersection-in-powershell"
+		],
+		"description": "set-union operation between two arrays"
+	},
+	"Array-Intersection": {
+		"prefix": ["intersection", "set-intersection"],
+		"body": [
+			"$$a = (1,2,3,4)",
+			"$$b = (1,3,4,5)",
+			"$$intersection = Compare-Object $$a $$b -PassThru -IncludeEqual -ExcludeDifferent # set-intersection operation between $a and $b.  See https://stackoverflow.com/questions/8609204/union-and-intersection-in-powershell"
+		],
+		"description": "set-intersection operation between two arrays"
+	},
+	"Array-Set-Difference": {
+		"prefix": ["difference", "set-difference"],
+		"body": [
+			"$$a = (1,2,3,4)",
+			"$$b = (1,3,4,5)",
+			"$$difference = Compare-Object $$a $$b -PassThru # set difference operation between $a and $b.  See https://stackoverflow.com/questions/8609204/union-and-intersection-in-powershell"
+		],
+		"description": "set-difference operation between two arrays"
 	}
-
+	
 	
 }
