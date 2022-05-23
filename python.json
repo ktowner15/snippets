@@ -79,7 +79,7 @@
 			"from lxml import etree",
 			"from selenium.webdriver.common.by import By",
 			"browser = webdriver.Chrome()",
-			"browser.get(\"https://techstepacademy.com/trial-of-the-stones\")",
+			"browser.get_element(\"https://techstepacademy.com/trial-of-the-stones\")",
 			"# typical find",
 			"divs = browser.find(By.XPATH, \"//div/span/..\")",
 			"#faster find using lxml to convert page HTML into an element tree.#Following this, the tree is in memory, so parsing will be faster than using raw Selenium manipulations.",
