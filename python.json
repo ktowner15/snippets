@@ -70,5 +70,26 @@
 			"#replies: list[int] = field(default_factory=list)# To avoid the above, use the default_factory argument.  This will instantiate separate memory blocks for each instance of this class."
 		],
 		"description": "Simple dataclass. Declaration as a dataclass automatically writes the __eq__, __init__, and __repr__ functions.  The 'frozen=True' param writes a __hash__ function, and means the class is immutable (read-only after declaration) and can be used, for example, as a dictionary key.  The 'order=True' param writes all of the inequality operator functions (__eq__, __ge__, __gt__, __le__, and __lt__).  Either/both parameters can be safely removed if you don't want their respective functions.\nSee https://youtu.be/vBH6GRJ1REM for more details on proper usage."
+	},
+	"selen_bot": {
+		"prefix": ["selen_bot", "bot"],
+		"body": [
+			"# Alternate way of solving the 2 merchants problem (faster)",
+			"from selenium import webdriver",
+			"from lxml import etree",
+			"from selenium.webdriver.common.by import By",
+			"browser = webdriver.Chrome()",
+			"browser.get(\"https://techstepacademy.com/trial-of-the-stones\")",
+			"# typical find",
+			"divs = browser.find(By.XPATH, \"//div/span/..\")",
+			"#faster find using lxml to convert page HTML into an element tree.#Following this, the tree is in memory, so parsing will be faster than using raw Selenium manipulations.",
+			"tree = etree.HTML(browser.page_source)",
+			"merchant_divs = tree.findall(\".//div/span/..\")",
+			"first_merchant = merchant_divs[0]",
+			"second_merchant = merchant_divs[1]",
+			"first_merchant.find(\"./span/b\").text",
+			"second_merchant.find(\"./span/b\").text"
+		],
+		"description": "Walks directory tree, treating dirToWalk as top of tree."
 	}
 }
