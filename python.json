@@ -91,5 +91,31 @@
 			"second_merchant.find(\"./span/b\").text"
 		],
 		"description": "Walks directory tree, treating dirToWalk as top of tree."
-	}
+	},
+	"function()":{
+		"prefix": ["window_pyqt", "pyqt"],
+		"body": [			
+			"from PyQt5.QtGui import *",
+			"from PyQt5.QtWidgets import *",
+			"from PyQt5.QtCore import *",
+			"",
+			"import sys",
+			"",
+			"# window definition",
+			"class MainWindow(QMainWindow):",
+			"\tdef __init__(self, *args, **kwargs):",
+			"\t\tsuper(MainWindow, self).__init__(*args, **kwargs)",
+			"",
+			"\t\tself.setWindowTitle(\"Example Title\")",
+			"\tpass",
+			"",
+			"app = QApplication(sys.argv)",
+			"",
+			"window = MainWindow()",
+			"window.show() # Windows are invisible by default.  Requires toggle.",
+			"",
+			"app.exec_()",
+		],
+		"description": "A function"
+	},
 }
