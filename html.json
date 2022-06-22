@@ -36,7 +36,7 @@
 			"\t</body>",
 			"</html>"
 		],
-		"description": "Log output to console"
+		"description": "Bootstrap 4 boilerplate"
 	},
 	"JS Boilerplate": {
 		"prefix": ["js_boilerplate","!"],
