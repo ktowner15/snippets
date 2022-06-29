@@ -1,0 +1,39 @@
+{
+	// Place your snippets for javascript here. Each snippet is defined under a snippet name and has a prefix, body and 
+	// description. The prefix is what is used to trigger the snippet and the body will be expanded and inserted. Possible variables are:
+	// $1, $2 for tab stops, $0 for the final cursor position, and ${1:label}, ${2:another} for placeholders. Placeholders with the 
+	// same ids are connected.
+	// Example:
+	// "Print to console": {
+	// 	"prefix": "log",
+	// 	"body": [
+	// 		"console.log('$1');",
+	// 		"$2"
+	// 	],
+	// 	"description": "Log output to console"
+	// }
+	"function_factory": {
+		"prefix": ["factory","function_factory","factory_function"],
+		"body": [
+			"function createObj(${1:args}){",
+			"\treturn {",
+			"\t\t${2:arg1},",
+			"\t\t${3:arg2},",
+			"\t\t${4:arg3}",
+			"\t};",
+			"}",
+		],
+		"description": "basic factory function with positional params"
+	},
+	"function_ctor": {
+		"prefix": ["ctor","function_ctor","ctor_function"],
+		"body": [
+			"function Obj(${1:args}){",
+			"\tthis.${2:key1} = ${3:arg1};",
+			"\tthis.${4:key2} = ${5:arg2};",
+			"\tthis.${6:key3} = ${7:arg3};",
+			"}",
+		],
+		"description": "basic object ctor function with positional params"
+	}
+}
