@@ -35,5 +35,14 @@
 			"}",
 		],
 		"description": "basic object ctor function with positional params"
+	},
+	"for": {
+		"prefix": ["for"],
+		"body": [
+			"for (let i = ${1:lim_start}; i < ${2:lim_end}; i${3:++}) {",
+			"\tconsole.log(i);",
+			"}"
+		],
+		"description": "basic for loopi"
 	}
 }
