@@ -121,4 +121,17 @@
 		],
 		"description": "A function"
 	},
+	"Graphical file select": {
+		"prefix": ["gui_file_select"],
+		"body": [
+			"import tkinter.filedialog as fileDialog",
+			"filepath = fileDialog.askopenfile(filetypes = [",
+			"\t('CSV files', ['*.csv']), # allow user to select CSV files",
+			"\t('Excel files', ['*.xlsx', '*.xls', '*.xlsm']) # allow user to select variants of Excel files",
+			"\t], ",
+			"\tinitialdir = file_selection_starting_dir",
+			").name # grab the filepath out of the returned filehandler"
+		],
+		"description": "Log output to console"
+	}
 }
