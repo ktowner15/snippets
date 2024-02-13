@@ -16,11 +16,10 @@
 	"main()": {
 		"prefix": ["main", "main_snippet"],
 		"body": [
-			"#Main execution function",
 			"def main():",
-			"\tprint(\"${1:Hello world?}\")",
+			"\t\"\"\"${1:docstring}\"\"\"",
+			"\tprint(\"${2:Hello world?}\")",
 			"",
-			"#Main execution thread",
 			"if __name__ == \"__main__\":",
 			"\tmain()"
 		],
@@ -30,13 +29,63 @@
 		"prefix": ["function", "function_snippet"],
 		"body": [
 			"def ${1:function_name}(${2:params}):",
-			"\t${3}",
+			"\"\"\"",
+			"${3:docstring}",
+			"\"\"\"",
+			"\t${4}",
 			"#end ${1:function_name}"
 		],
 		"description": "A function"
 	},
-	"fileIO_snippet":{
-		"prefix": ["file_io", "io", "io_snippet", "file_snippet"],
+	"webdriver_wait": {
+		"prefix": ["webdriver_wait"],
+		"body": [
+			"from selenium.webdriver.support.wait import WebDriverWait",
+			"from selenium.webdriver.support import expected_conditions",
+			"wait = WebDriverWait(${1:driver}, ${2:int_timeout})",
+			"element = wait.until(expected_conditions.element_to_be_clickable((By.${3:type_of_by}, '${4:identifier}')"
+		]
+	},
+	"webdriver_custom_condition": {
+		"prefix": ["webdriver_custom_condition"],
+		"body": [
+			"class $wait_for_condition():",
+			"\tdef __init__(self, locator, text:str):",
+			"\t\tself.locator = locator",
+			"\t\tself.text = text",
+			"\tdef __call__(self, driver):",
+			"\t\ttry:",
+			"\t\t\telement_text = driver.find_element(locator).text",
+			"\t\t\treturn element_text.startswith(self.text)",
+			"\t\texcept StaleElementReferenceException:",
+			"\t\t\treturn False"
+		]
+	},
+	"database_connect":{
+		"prefix": ["database_connect", "db_connect"],
+		"body": [
+			"import mysql.connector",
+			"import dotenv",
+			"\tdef connect_to_db():",
+			"\tdotenv.load_dotenv()",
+			"\tHOST = f\"${1:host_connection_address}\"",
+			"\tPORT = f\"${2:host_connection_port}\"",
+			"\tUSERNAME = os.getenv(\"db_username\")",
+			"\tPASSWORD = os.getenv(\"db_password\")",
+			"\tDATABASE = \"${3:database_name}\"",
+			"\t",
+			"\tdb = mysql.connector.connect(",
+			"\t\thost=f\"{HOST}\",",
+			"\t\tport=f\\\"{PORT}\",",
+			"\t\tuser=USERNAME,",
+			"\t\tpassword=PASSWORD,",
+			"\t\tdatabase=DATABASE",
+			"\t)",
+			"\treturn db"
+		]
+	},
+	"fileIO":{
+		"prefix": ["file_io", "io"],
 		"body": [
 			"import os",
 			"if(os.path.exists(${1:file_path})):",
@@ -75,9 +124,15 @@
 		"prefix": ["selen_bot", "bot"],
 		"body": [
 			"# Alternate way of solving the 2 merchants problem (faster)",
-			"from selenium import webdriver",
-			"from lxml import etree",
+			"",
+			"# Extends selenium's webdriver to log page requests and responses",
+			"from seleniumwire import webdriver",
+			"# Normal selenium imports of helpful namespaces",
 			"from selenium.webdriver.common.by import By",
+			"from selenium.webdriver.common.keys import Keys",
+			"from selenium.webdriver.common.action_chains import ActionChains",
+			"from lxml import etree",
+			"",
 			"browser = webdriver.Chrome()",
 			"browser.get(\"https://techstepacademy.com/trial-of-the-stones\")",
 			"# typical find",
@@ -90,9 +145,9 @@
 			"print(first_merchant.find(\"./span/b\").text)",
 			"print(second_merchant.find(\"./span/b\").text)"
 		],
-		"description": "Walks directory tree, treating dirToWalk as top of tree."
+		"description": ""
 	},
-	"function":{
+	"window_pyqt":{
 		"prefix": ["window_pyqt", "pyqt"],
 		"body": [			
 			"from PyQt5.QtGui import *",
@@ -122,7 +177,7 @@
 		"description": "A function"
 	},
 	"Graphical file select": {
-		"prefix": ["gui_file_select"],
+		"prefix": ["gui_file_select", "file_dialog"],
 		"body": [
 			"import tkinter.filedialog as fileDialog",
 			"filepath = fileDialog.askopenfile(filetypes = [",
@@ -135,7 +190,7 @@
 		"description": "Log output to console"
 	},
 	"Inject dependencies": {
-		"prefix": ["inject_dependencies", "Dependency_injection","main_inject_dependencies"],
+		"prefix": ["inject_dependencies", "dependency_injection","main_inject_dependencies"],
 		"body": [
 			"try:",
 			"\t# these imports are mandantory for dependency injection",
@@ -346,5 +401,66 @@
 		  "\tmain()"
 		],
 		"description": "Test_suite"
-	  }
+	},
+	"df_write": {
+		"prefix": "df_write",
+		"body": [
+			"def write_results(dataframe, destination, worksheet_name, method):",
+			"\tif(method == \"excel\"):",
+			"\t\t# Delete file if it exists.",
+			"\t\tif(os.path.exists(destination)):",
+			"\t\t\tos.remove(destination)",
+			"",
+			"\t\t# Write the file",
+			"\t\t# apply conditional formatting when writing the document",
+			"",
+			"\t\t# data.to_excel(destination) # old method",
+			"",
+			"\t\t# Create a Pandas Excel writer using XlsxWriter as the engine.",
+			"\t\twriter = pandas.ExcelWriter(destination, engine='xlsxwriter')",
+			"\t\t# Convert the dataframe to an XlsxWriter Excel object.",
+			"\t\tdataframe.to_excel(writer, sheet_name=worksheet_name)",
+			"",
+			"\t\t# Get the xlsxwriter workbook and worksheet objects.",
+			"\t\tworkbook  = writer.book",
+			"\t\tworksheet = writer.sheets[worksheet_name]",
+			"",
+			"\t\t# Apply a conditional format to the cell range.",
+			"\t\t# Specify formats",
+			"",
+			"\t\t# Light red fill with dark red text.",
+			"\t\tred_format = workbook.add_format({'bg_color':   '#FFC7CE', 'font_color': '#9C0006'})",
+			"\t\t# Light yellow fill with dark yellow text.",
+			"\t\tyellow_format = workbook.add_format({'bg_color':   '#FFEB9C', 'font_color': '#9C6500'})",
+			"\t\t# Green fill with dark green text.",
+			"\t\tgreen_format = workbook.add_format({'bg_color':   '#C6EFCE', 'font_color': '#006100'})",
+			"",
+			"\t\trange_string = str(f'H2:H{dataframe.shape[0] + 1}') # range to apply the conditional formatting to.  Shape[0] member contains ,number of dataframe rows.  Add 1 due to having to skip the header row.  Column H currently contains the comparator results.",
+			"",
+			"\t\t# Apply formats to desired ranges",
+			"\t\tworksheet.conditional_format(range_string, {",
+			"\t\t\t'type': 'cell',",
+			"\t\t\t'criteria': 'equal to',",
+			"\t\t\t'value': 'FALSE',",
+			"\t\t\t'format': red_format",
+			"\t\t\t}",
+			"\t\t)",
+			"",
+			"\t\tworksheet.conditional_format(range_string, {",
+			"\t\t\t'type': 'cell',",
+			"\t\t\t'criteria': 'equal to',",
+			"\t\t\t'value': 'TRUE',",
+			"\t\t\t'format': green_format",
+			"\t\t\t}",
+			"\t\t)",
+			"",
+			"\t\t# Close the Pandas Excel writer and output the Excel file.",
+			"\t\twriter.close()",
+		],
+		"description": "Write dataframe to excel format, applying conditional formatting."
+	},
+	"pytest_skip_decorator": {
+		"prefix": ["pytest_skip_decorator"],
+		"body": "@pytest.mark.skipif(sys.version_info < (3, 7), reason=\"requires python3.7 or higher\")"
+	}
 }

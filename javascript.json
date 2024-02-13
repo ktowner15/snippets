@@ -25,13 +25,22 @@
 		],
 		"description": "basic factory function with positional params"
 	},
-	"function_ctor": {
+	"basic_function": {
+		"prefix": "basic_function_react",
+		"body": [
+			"function Car() {",
+			"\treturn <h2>Hi, I am a Car!</h2>;",
+			"}"
+		]
+	},
+	"object_as_function": {
 		"prefix": ["ctor","function_ctor","ctor_function"],
 		"body": [
 			"function Obj(${1:args}){",
 			"\tthis.${2:key1} = ${3:arg1};",
 			"\tthis.${4:key2} = ${5:arg2};",
 			"\tthis.${6:key3} = ${7:arg3};",
+			"\treturn <h2>Hi, I am an object!</h2>",
 			"}",
 		],
 		"description": "basic object ctor function with positional params"
@@ -44,5 +53,23 @@
 			"}"
 		],
 		"description": "basic for loopi"
+	},
+	"arrow":{
+		"prefix": ["arrow", "anon"],
+		"body": [
+			"(${1:param}) => {",
+			"\t${2:body}$3",
+			"};"
+		]
+	},
+	"React component":{
+		"prefix": "component_react",
+		"body": [
+			"class Car extends React.Component {",
+			"\trender() {",
+			"\t\treturn <h2 className=\"hello\">Hi, I am a car!</h2>",
+			"\t}",
+			"}"
+		]
 	}
 }

@@ -50,5 +50,11 @@
 			"${2:purpose_of_doc}"
 		],
 		"description": "README format snippet"
+	},
+	"Image Tag": {
+		"prefix": ["img", "image", "image_tag"],
+		"body": [
+			"<img src=\"${1:link}\"></img>",
+		]
 	}
 }
